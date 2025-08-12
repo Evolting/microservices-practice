@@ -62,8 +62,8 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public ResponseEntity<List<QuestionDTO>> getQuestionsByIds(List<Integer> questionIds) {
         List<QuestionDTO> questionDTOS = new ArrayList<>();
-        List<Question> questions = questionRepository.findAllById(questionIds);
-        for (Question question : questions) {
+        for (Integer questionId : questionIds) {
+            Question question = questionRepository.findById(questionId).get();
             QuestionDTO questionDTO = new QuestionDTO();
             questionDTO.setId(question.getId());
             questionDTO.setQuestionTitle(question.getQuestionTitle());
